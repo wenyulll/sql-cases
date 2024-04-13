@@ -28,7 +28,19 @@ The sales table captures all customer_id level purchases with an corresponding o
 |-------------|------------|------------|
 | A           | 2021-01-01 | 1          |
 | A           | 2021-01-01 | 2          |
-... (continue the table as needed)
+| A           | 2021-01-07 | 2          |
+| A           | 2021-01-10 | 3          |
+| A           | 2021-01-11 | 3          |
+| A           | 2021-01-11 | 3          |
+| B           | 2021-01-01 | 2          |
+| B           | 2021-01-02 | 2          |
+| B           | 2021-01-04 | 1          |
+| B           | 2021-01-11 | 1          |
+| B           | 2021-01-16 | 3          |
+| B           | 2021-02-01 | 3          |
+| C           | 2021-01-01 | 3          |
+| C           | 2021-01-01 | 3          |
+| C           | 2021-01-07 | 3          |
 
 ##### Table 2: menu
 The menu table maps the product_id to the actual product_name and price of each menu item.

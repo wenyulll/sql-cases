@@ -48,7 +48,9 @@ The menu table maps the product_id to the actual product_name and price of each 
 | product_id | product_name | price |
 |------------|--------------|-------|
 | 1          | sushi        | 10    |
-... (continue the table as needed)
+| 2          | curry        | 15    |
+| 3          | ramen        | 12    |
+
 
 ##### Table 3: members
 The final members table captures the join_date when a customer_id joined the beta version of the Danny’s Diner loyalty program.

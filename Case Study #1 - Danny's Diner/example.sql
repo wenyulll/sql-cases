@@ -65,3 +65,9 @@ SELECT s.customer_id, SUM(m.price) AS total_spent
 FROM dannys_diner.sales s
 JOIN dannys_diner.menu m ON s.product_id = m.product_id
 GROUP BY s.customer_id;
+
+SELECT s.customer_id, m.product_name, COUNT(*) AS order_count
+FROM dannys_diner.sales s
+JOIN dannys_diner.menu m ON s.product_id = m.product_id
+GROUP BY s.customer_id, m.product_name
+ORDER BY s.customer_id, order_count DESC;

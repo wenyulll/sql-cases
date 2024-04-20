@@ -81,3 +81,11 @@ SELECT s.customer_id, CASE WHEN m.customer_id IS NULL THEN 'Non-member' ELSE 'Me
 FROM dannys_diner.sales s
 LEFT JOIN dannys_diner.members m ON s.customer_id = m.customer_id
 GROUP BY s.customer_id, membership_status;
+
+SELECT s.customer_id,
+       SUM(CASE WHEN s.order_date < m.join_date THEN menu.price ELSE 0 END) AS spent_before_joining,
+       SUM(CASE WHEN s.order_date >= m.join_date THEN menu.price ELSE 0 END) AS spent_after_joining
+FROM dannys_diner.sales s
+JOIN dannys_diner.menu ON s.product_id = menu.product_id
+LEFT JOIN dannys_diner.members m ON s.customer_id = m.customer_id
+GROUP BY s.customer_id;

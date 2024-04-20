@@ -59,3 +59,9 @@ The final members table captures the join_date when a customer_id joined the bet
 |-------------|------------|
 | A           | 2021-01-07 |
 | B           | 2021-01-09 |
+
+
+SELECT s.customer_id, SUM(m.price) AS total_spent
+FROM dannys_diner.sales s
+JOIN dannys_diner.menu m ON s.product_id = m.product_id
+GROUP BY s.customer_id;

@@ -60,6 +60,15 @@ The final members table captures the join_date when a customer_id joined the bet
 | A           | 2021-01-07 |
 | B           | 2021-01-09 |
 
+SELECT id
+FROM (
+    SELECT id,
+           temperature,
+           LAG(temperature) OVER (ORDER BY recordDate) as prev_temperature
+    FROM Weather
+) AS temp_diff
+WHERE temperature > prev_temperature;
+
 
 SELECT s.customer_id, SUM(m.price) AS total_spent
 FROM dannys_diner.sales s

@@ -71,3 +71,13 @@ FROM dannys_diner.sales s
 JOIN dannys_diner.menu m ON s.product_id = m.product_id
 GROUP BY s.customer_id, m.product_name
 ORDER BY s.customer_id, order_count DESC;
+
+SELECT customer_id, COUNT(DISTINCT order_date) AS visit_count
+FROM dannys_diner.sales
+GROUP BY customer_id;
+
+
+SELECT s.customer_id, CASE WHEN m.customer_id IS NULL THEN 'Non-member' ELSE 'Member' END AS membership_status
+FROM dannys_diner.sales s
+LEFT JOIN dannys_diner.members m ON s.customer_id = m.customer_id
+GROUP BY s.customer_id, membership_status;

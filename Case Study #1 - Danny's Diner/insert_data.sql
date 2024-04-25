@@ -57,6 +57,8 @@ GROUP BY sales.customer_id;
 
 
 -- How many days has each customer visited the restaurant?
+
+
 -- What was the first item from the menu purchased by each customer?
 -- What is the most purchased item on the menu and how many times was it purchased by all customers?
 -- Which item was the most popular for each customer?

@@ -57,6 +57,9 @@ GROUP BY sales.customer_id;
 
 
 -- How many days has each customer visited the restaurant?
+SELECT customer_id, COUNT(DISTINCT order_date) AS days_visited
+FROM sales
+GROUP BY customer_id;
 
 
 -- What was the first item from the menu purchased by each customer?

@@ -50,6 +50,11 @@ INSERT INTO members (customer_id, join_date) VALUES
 
 
 -- What is the total amount each customer spent at the restaurant?
+SELECT sales.customer_id, SUM(price) as total_spend
+FROM sales
+JOIN mene ON sales.product.id = sales.product.id  
+GROUP BY customer.id
+
 How many days has each customer visited the restaurant?
 What was the first item from the menu purchased by each customer?
 What is the most purchased item on the menu and how many times was it purchased by all customers?

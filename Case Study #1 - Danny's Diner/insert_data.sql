@@ -50,17 +50,18 @@ INSERT INTO members (customer_id, join_date) VALUES
 
 
 -- What is the total amount each customer spent at the restaurant?
-SELECT sales.customer_id, SUM(price) as total_spend
+SELECT sales.customer_id, SUM(menu.price) AS total_spend
 FROM sales
-JOIN mene ON sales.product.id = sales.product.id  
-GROUP BY customer.id
+JOIN menu ON sales.product_id = menu.product_id
+GROUP BY sales.customer_id;
 
-How many days has each customer visited the restaurant?
-What was the first item from the menu purchased by each customer?
-What is the most purchased item on the menu and how many times was it purchased by all customers?
-Which item was the most popular for each customer?
-Which item was purchased first by the customer after they became a member?
-Which item was purchased just before the customer became a member?
-What is the total items and amount spent for each member before they became a member?
-If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
-In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+
+-- How many days has each customer visited the restaurant?
+-- What was the first item from the menu purchased by each customer?
+-- What is the most purchased item on the menu and how many times was it purchased by all customers?
+-- Which item was the most popular for each customer?
+-- Which item was purchased first by the customer after they became a member?
+-- Which item was purchased just before the customer became a member?
+-- What is the total items and amount spent for each member before they became a member?
+-- If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
+-- In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?

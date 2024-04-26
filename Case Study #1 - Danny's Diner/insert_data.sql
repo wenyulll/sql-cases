@@ -61,12 +61,28 @@ SELECT customer_id, COUNT(DISTINCT order_date) AS days_visited
 FROM sales
 GROUP BY customer_id;
 
-
 -- What was the first item from the menu purchased by each customer?
+SELECT sales.customer_id, menu.product_name
+FROM sales
+JOIN menu ON sales.product_id = menu.product_id
+WHERE (sales.customer_id, sales.order_date) IN (
+    SELECT sales.customer_id, MAX(sales.order_date) AS last_order_date
+    FROM sales
+    GROUP BY sales.customer_id
+);
+
+
 -- What is the most purchased item on the menu and how many times was it purchased by all customers?
--- Which item was the most popular for each customer?
--- Which item was purchased first by the customer after they became a member?
--- Which item was purchased just before the customer became a member?
+SELECT menu.product_name, COUNT(*) AS times_purchased
+FROM sales
+JOIN menu ON sales.product_id = menu.product_id
+GROUP BY menu.product_id, menu.product_name
+ORDER BY times_purchased DESC
+LIMIT 1;
+
+-- Which item was the most popular for each customer? - most purchased item ranking
+-- Which item was purchased first by the customer after they became a member? item purchase day after the membership enrollement
+-- Which item was purchased just before the customer became a member? 
 -- What is the total items and amount spent for each member before they became a member?
 -- If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
--- In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+-- In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?ec

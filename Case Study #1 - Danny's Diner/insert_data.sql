@@ -109,6 +109,13 @@ WHERE sales.order_date < members.join_date
 GROUP BY members.customer_id
 ORDER BY sales.order_date DESC;
 
--- What is the total items and amount spent for each member before they became a member?
+-- What is the total items and amount spent for each member before they became a member?-- 成为会员之前每位会员的消费总额和购买总数
+SELECT members.customer_id, COUNT(*) AS items_purchased, SUM(menu.price) AS total_spent
+FROM sales
+JOIN members ON sales.customer_id = members.customer_id
+JOIN menu ON sales.product_id = menu.product_id
+WHERE sales.order_date < members.join_date
+GROUP BY members.customer_id;
+
 -- If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 -- In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?ec

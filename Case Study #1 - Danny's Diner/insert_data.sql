@@ -81,6 +81,17 @@ ORDER BY times_purchased DESC
 LIMIT 1;
 
 -- Which item was the most popular for each customer? - most purchased item ranking
+-- 最受每个客户欢迎的菜品
+SELECT customer_id, product_name, MAX(purchases) AS most_purchased
+FROM (
+    SELECT sales.customer_id, menu.product_name, COUNT(*) AS purchases
+    FROM sales
+    JOIN menu ON sales.product_id = menu.product_id
+    GROUP BY sales.customer_id, menu.product_id, menu.product_name
+) AS sub
+GROUP BY customer_id
+ORDER BY most_purchased DESC;
+
 -- Which item was purchased first by the customer after they became a member? item purchase day after the membership enrollement
 -- Which item was purchased just before the customer became a member? 
 -- What is the total items and amount spent for each member before they became a member?

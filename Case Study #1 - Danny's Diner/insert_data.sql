@@ -118,7 +118,7 @@ WHERE sales.order_date < members.join_date
 GROUP BY members.customer_id;
 
 -- If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
--- 计算每位客户的积分（考虑特别规则）
+ 
 SELECT sales.customer_id, 
        SUM(
            CASE 
@@ -130,4 +130,17 @@ FROM sales
 JOIN menu ON sales.product_id = menu.product_id
 GROUP BY sales.customer_id;
 
--- In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?ec
+-- In the first week after a customer joins the program (including their join date) they earn 2x points on all item-- 成为会员后第一周内的积分（包括加入日期）
+SELECT members.customer_id,
+       SUM(
+           CASE
+               WHEN DATEDIFF(sales.order_date, members.join_date) BETWEEN 0 AND 7 THEN menu.price * 20 -- 第一周所有项目积分加倍
+               ELSE menu.price * 10
+           END
+       ) AS points
+FROM sales
+JOIN members ON sales.customer_id = members.customer_id
+JOIN menu ON sales.product_id = menu.product_id
+WHERE sales.order_date BETWEEN members.join_date AND DATE_ADD(members.join_date, INTERVAL 7 DAY)
+GROUP BY members.customer_id;
+s, not just sushi - how many points do customer A and B have at the end of January?ec

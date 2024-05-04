@@ -101,6 +101,14 @@ GROUP BY members.customer_id
 ORDER BY sales.order_date ASC;
 
 -- Which item was purchased just before the customer became a member? 
+SELECT members.customer_id, menu.product_name
+FROM sales
+JOIN members ON sales.customer_id = members.customer_id
+JOIN menu ON sales.product_id = menu.product_id
+WHERE sales.order_date < members.join_date
+GROUP BY members.customer_id
+ORDER BY sales.order_date DESC;
+
 -- What is the total items and amount spent for each member before they became a member?
 -- If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 -- In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?ec

@@ -81,7 +81,6 @@ ORDER BY times_purchased DESC
 LIMIT 1;
 
 -- Which item was the most popular for each customer? - most purchased item ranking
--- 最受每个客户欢迎的菜品
 SELECT customer_id, product_name, MAX(purchases) AS most_purchased
 FROM (
     SELECT sales.customer_id, menu.product_name, COUNT(*) AS purchases
@@ -93,6 +92,14 @@ GROUP BY customer_id
 ORDER BY most_purchased DESC;
 
 -- Which item was purchased first by the customer after they became a member? item purchase day after the membership enrollement
+SELECT members.customer_id, menu.product_name
+FROM sales
+JOIN members ON sales.customer_id = members.customer_id
+JOIN menu ON sales.product_id = menu.product_id
+WHERE sales.order_date >= members.join_date
+GROUP BY members.customer_id
+ORDER BY sales.order_date ASC;
+
 -- Which item was purchased just before the customer became a member? 
 -- What is the total items and amount spent for each member before they became a member?
 -- If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?

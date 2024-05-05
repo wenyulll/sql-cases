@@ -130,11 +130,11 @@ FROM sales
 JOIN menu ON sales.product_id = menu.product_id
 GROUP BY sales.customer_id;
 
--- In the first week after a customer joins the program (including their join date) they earn 2x points on all item-- 成为会员后第一周内的积分（包括加入日期）
+-- In the first week after a customer joins the program (including their join date) they earn 2x points on all item-- 
 SELECT members.customer_id,
        SUM(
            CASE
-               WHEN DATEDIFF(sales.order_date, members.join_date) BETWEEN 0 AND 7 THEN menu.price * 20 -- 第一周所有项目积分加倍
+               WHEN DATEDIFF(sales.order_date, members.join_date) BETWEEN 0 AND 7 THEN menu.price * 20 
                ELSE menu.price * 10
            END
        ) AS points

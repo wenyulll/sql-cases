@@ -75,3 +75,9 @@ INSERT INTO runner_orders (order_id, runner_id, pickup_time, distance, duration,
 (6, 3, NULL, NULL, NULL, 'Restaurant Cancellation'),
 (7, 2, '2020-01-08 21:30:45', '25km', '25mins', NULL),
 (8, 2, '2020-01-10 00:15:02',
+
+SELECT COUNT(*) AS total_pizzas_ordered
+FROM customer_orders;
+
+SELECT COUNT(DISTINCT order_id) AS unique_customer_orders
+FROM customer_orders;

@@ -86,3 +86,8 @@ SELECT runner_id, COUNT(*) AS successful_orders
 FROM runner_orders
 WHERE cancellation IS NULL OR cancellation = 'NaN'
 GROUP BY runner_id;
+
+SELECT pn.pizza_name, COUNT(co.pizza_id) AS total_orders
+FROM customer_orders co
+JOIN pizza_names pn ON co.pizza_id = pn.pizza_id
+GROUP BY pn.pizza_name;

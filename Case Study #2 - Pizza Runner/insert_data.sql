@@ -91,3 +91,13 @@ SELECT pn.pizza_name, COUNT(co.pizza_id) AS total_orders
 FROM customer_orders co
 JOIN pizza_names pn ON co.pizza_id = pn.pizza_id
 GROUP BY pn.pizza_name;
+
+SELECT 
+    COUNT(*) AS pizzas_with_exclusions
+FROM customer_orders
+WHERE exclusions IS NOT NULL AND exclusions <> 'null';
+
+SELECT 
+    COUNT(*) AS pizzas_with_extras
+FROM customer_orders
+WHERE extras IS NOT NULL AND extras <> 'null';

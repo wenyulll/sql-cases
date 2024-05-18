@@ -82,3 +82,7 @@ FROM customer_orders;
 SELECT COUNT(DISTINCT order_id) AS unique_customer_orders
 FROM customer_orders;
 
+SELECT runner_id, COUNT(*) AS successful_orders
+FROM runner_orders
+WHERE cancellation IS NULL OR cancellation = 'NaN'
+GROUP BY runner_id;

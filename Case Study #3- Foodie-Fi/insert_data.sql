@@ -51,6 +51,12 @@ FROM foodie_fi.subscriptions;
 
 
 -- 2. What is the monthly distribution of trial plan start_date values for our dataset? Use the start of the month as the group by value.
+SELECT DATE_TRUNC('month', start_date) AS month_start, COUNT(*) AS trial_starts
+FROM foodie_fi.subscriptions
+WHERE plan_id = 0
+GROUP BY DATE_TRUNC('month', start_date)
+ORDER BY month_start;
+
 -- 3. What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name.
 -- 4. What is the customer count and percentage of customers who have churned, rounded to 1 decimal place?
 -- 5. How many customers have churned straight after their initial free trial? What percentage is this, rounded to the nearest whole number?

@@ -81,6 +81,39 @@ SELECT
 FROM churned_customers, total_customers;
 
 -- 5. How many customers have churned straight after their initial free trial? What percentage is this, rounded to the nearest whole number?
+WITH first_plan AS (
+    SELECT customer_id, MIN(start_date) AS first_date
+    FROM foodie_fi.subscriptions
+    GROUP BY customer_id
+),
+churn_after_trial AS (
+    SELECT s.customer_id
+    FROM foodie_fi.subscriptions s
+    JOIN first_plan fp ON s.customer_id = fp.customer_id AND s.start_date = fp.first_date
+    WHERE s.plan_id = 0
+    AND EXISTS (
+        SELECT 1
+        FROM foodie_fi.subscriptions s2
+        WHERE s2.customer_id = s.customer_id
+        AND s2.plan_id = 4
+        AND s2.start_date > s.start_date
+        AND NOT EXISTS (
+            SELECT 1
+            FROM foodie_fi.subscriptions s3
+            WHERE s3.customer_id = s.customer_id
+            AND s3.start_date > s.start_date AND s3.start_date < s2.start_date
+        )
+    )
+),
+total_customers AS (
+    SELECT COUNT(DISTINCT customer_id) AS total
+    FROM foodie_fi.subscriptions
+)
+SELECT 
+    COUNT(churn_after_trial.customer_id) AS churn_after_trial_count,
+    ROUND((COUNT(churn_after_trial.customer_id)::DECIMAL / total_customers.total) * 100) AS percentage
+FROM churn_after_trial, total_customers;
+
 -- 6. What is the number and percentage of customer plans after their initial free trial?
 -- 7. What is the customer count and percentage breakdown of all 5 plan_name values as of 2020-12-31?
 -- 8. How many customers have upgraded to an annual plan in 2020?

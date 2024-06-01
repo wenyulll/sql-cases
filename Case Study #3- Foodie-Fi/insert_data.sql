@@ -66,6 +66,20 @@ GROUP BY p.plan_name
 ORDER BY count DESC;
 
 -- 4. What is the customer count and percentage of customers who have churned, rounded to 1 decimal place?
+WITH total_customers AS (
+    SELECT COUNT(DISTINCT customer_id) AS total
+    FROM foodie_fi.subscriptions
+),
+churned_customers AS (
+    SELECT COUNT(DISTINCT customer_id) AS churned
+    FROM foodie_fi.subscriptions
+    WHERE plan_id = 4
+)
+SELECT 
+    churned_customers.churned,
+    ROUND((churned_customers.churned::DECIMAL / total_customers.total) * 100, 1) AS churn_percentage
+FROM churned_customers, total_customers;
+
 -- 5. How many customers have churned straight after their initial free trial? What percentage is this, rounded to the nearest whole number?
 -- 6. What is the number and percentage of customer plans after their initial free trial?
 -- 7. What is the customer count and percentage breakdown of all 5 plan_name values as of 2020-12-31?

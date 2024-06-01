@@ -115,6 +115,21 @@ SELECT
 FROM churn_after_trial, total_customers;
 
 -- 6. What is the number and percentage of customer plans after their initial free trial?
+WITH first_plan AS (
+    SELECT customer_id, MIN(start_date) AS first_date
+    FROM foodie_fi.subscriptions
+    GROUP BY customer_id
+),
+subsequent_plans AS (
+    SELECT s.customer_id
+    FROM foodie_fi.subscriptions s
+    JOIN first_plan fp ON s.customer_id = fp.customer_id AND s.start_date > fp.first_date
+)
+SELECT 
+    COUNT(DISTINCT subsequent_plans.customer_id) AS subsequent_plan_count,
+    ROUND((COUNT(DISTINCT subsequent_plans.customer_id)::DECIMAL / (SELECT COUNT(DISTINCT customer_id) FROM foodie_fi.subscriptions)) * 100, 1) AS percentage
+FROM subsequent_plans;
+
 -- 7. What is the customer count and percentage breakdown of all 5 plan_name values as of 2020-12-31?
 -- 8. How many customers have upgraded to an annual plan in 2020?
 -- 9. How many days on average does it take for a customer to upgrade to an annual plan from the day they join Foodie-Fi?

@@ -46,7 +46,8 @@ INSERT INTO foodie_fi.subscriptions (customer_id, plan_id, start_date) VALUES
 
 -- 1. How many customers has Foodie-Fi ever had?
 
-SELECT * FROM 
+SELECT COUNT(DISTINCT customer_id) AS total_customers
+FROM foodie_fi.subscriptions;
 
 
 -- 2. What is the monthly distribution of trial plan start_date values for our dataset? Use the start of the month as the group by value.

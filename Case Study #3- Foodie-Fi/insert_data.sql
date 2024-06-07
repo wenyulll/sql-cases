@@ -153,6 +153,11 @@ JOIN foodie_fi.plans p ON pc.plan_id = p.plan_id, total_customers tc
 ORDER BY pc.customer_count DESC;
 
 -- 8. How many customers have upgraded to an annual plan in 2020?
+SELECT COUNT(DISTINCT customer_id) AS annual_plan_upgrades
+FROM foodie_fi.subscriptions
+WHERE plan_id = 3
+AND start_date BETWEEN '2020-01-01' AND '2020-12-31';
+
 -- 9. How many days on average does it take for a customer to upgrade to an annual plan from the day they join Foodie-Fi?
 -- 10. Can you further break down this average value into 30-day periods (i.e., 0-30 days, 31-60 days, etc.)?
 -- 11. How many customers downgraded from a pro monthly to a basic monthly plan in 2020?

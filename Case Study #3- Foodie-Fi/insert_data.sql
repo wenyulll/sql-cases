@@ -177,4 +177,36 @@ JOIN annual_plan_upgrades apu ON fp.customer_id = apu.customer_id;
 
 
 -- 10. Can you further break down this average value into 30-day periods (i.e., 0-30 days, 31-60 days, etc.)?
+
+WITH first_plan AS (
+    SELECT customer_id, MIN(start_date) AS first_date
+    FROM foodie_fi.subscriptions
+    GROUP BY customer_id
+),
+annual_plan_upgrades AS (
+    SELECT customer_id, MIN(start_date) AS upgrade_date
+    FROM foodie_fi.subscriptions
+    WHERE plan_id = 3
+    GROUP BY customer_id
+),
+days_to_upgrade AS (
+    SELECT 
+        customer_id,
+        upgrade_date - first_date AS days_to_upgrade
+    FROM first_plan fp
+    JOIN annual_plan_upgrades apu ON fp.customer_id = apu.customer_id
+)
+SELECT 
+    CASE
+        WHEN days_to_upgrade <= 30 THEN '0-30 days'
+        WHEN days_to_upgrade <= 60 THEN '31-60 days'
+        WHEN days_to_upgrade <= 90 THEN '61-90 days'
+        ELSE '91+ days'
+    END AS period,
+    COUNT(*) AS count,
+    ROUND((COUNT(*)::DECIMAL / (SELECT COUNT(*) FROM days_to_upgrade)) * 100, 1) AS percentage
+FROM days_to_upgrade
+GROUP BY period
+ORDER BY period;
+
 -- 11. How many customers downgraded from a pro monthly to a basic monthly plan in 2020?

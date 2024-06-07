@@ -159,5 +159,22 @@ WHERE plan_id = 3
 AND start_date BETWEEN '2020-01-01' AND '2020-12-31';
 
 -- 9. How many days on average does it take for a customer to upgrade to an annual plan from the day they join Foodie-Fi?
+WITH first_plan AS (
+    SELECT customer_id, MIN(start_date) AS first_date
+    FROM foodie_fi.subscriptions
+    GROUP BY customer_id
+),
+annual_plan_upgrades AS (
+    SELECT customer_id, MIN(start_date) AS upgrade_date
+    FROM foodie_fi.subscriptions
+    WHERE plan_id = 3
+    GROUP BY customer_id
+)
+SELECT 
+    ROUND(AVG(upgrade_date - first_date)) AS avg_days_to_upgrade
+FROM first_plan fp
+JOIN annual_plan_upgrades apu ON fp.customer_id = apu.customer_id;
+
+
 -- 10. Can you further break down this average value into 30-day periods (i.e., 0-30 days, 31-60 days, etc.)?
 -- 11. How many customers downgraded from a pro monthly to a basic monthly plan in 2020?

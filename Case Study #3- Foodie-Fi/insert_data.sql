@@ -131,6 +131,27 @@ SELECT
 FROM subsequent_plans;
 
 -- 7. What is the customer count and percentage breakdown of all 5 plan_name values as of 2020-12-31?
+WITH plan_counts AS (
+    SELECT 
+        plan_id,
+        COUNT(DISTINCT customer_id) AS customer_count
+    FROM foodie_fi.subscriptions
+    WHERE start_date <= '2020-12-31'
+    GROUP BY plan_id
+),
+total_customers AS (
+    SELECT COUNT(DISTINCT customer_id) AS total
+    FROM foodie_fi.subscriptions
+    WHERE start_date <= '2020-12-31'
+)
+SELECT 
+    p.plan_name,
+    pc.customer_count,
+    ROUND((pc.customer_count::DECIMAL / tc.total) * 100, 1) AS percentage
+FROM plan_counts pc
+JOIN foodie_fi.plans p ON pc.plan_id = p.plan_id, total_customers tc
+ORDER BY pc.customer_count DESC;
+
 -- 8. How many customers have upgraded to an annual plan in 2020?
 -- 9. How many days on average does it take for a customer to upgrade to an annual plan from the day they join Foodie-Fi?
 -- 10. Can you further break down this average value into 30-day periods (i.e., 0-30 days, 31-60 days, etc.)?

@@ -207,21 +207,5 @@ SELECT
     ROUND((COUNT(*)::DECIMAL / (SELECT COUNT(*) FROM days_to_upgrade)) * 100, 1) AS percentage
 FROM days_to_upgrade
 GROUP BY period
-ORDER BY period;
-
--- 11. How many customers downgraded from a pro monthly to a basic monthly plan in 2020?
-WITH downgrades AS (
-    SELECT 
-        s1.customer_id,
-        s1.start_date AS pro_monthly_date,
-        s2.start_date AS basic_monthly_date
-    FROM foodie_fi.subscriptions s1
-    JOIN foodie_fi.subscriptions s2 ON s1.customer_id = s2.customer_id
-    WHERE s1.plan_id = 2
-    AND s2.plan_id = 1
-    AND s2.start_date > s1.start_date
-    AND s1.start_date BETWEEN '2020-01-01' AND '2020-12-31'
-)
-SELECT COUNT(DISTINCT customer_id) AS downgrades_in_2020
-FROM downgrades;
+ORDER BY period
 

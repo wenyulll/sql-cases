@@ -52,3 +52,8 @@ INSERT INTO customer_transactions (customer_id, txn_date, txn_type, txn_amount) 
 (376, '2020-01-03', 'deposit', 706),
 (188, '2020-01-13', 'deposit', 601),
 (138, '2020-01-11', 'deposit', 520);
+
+
+-- How many unique nodes are there on the Data Bank system?
+
+SELECT COUNT(DISTINCT node_id) AS unique_nodes FROM customer_nodes;

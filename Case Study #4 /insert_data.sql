@@ -93,3 +93,14 @@ GROUP BY region_name;
 SELECT txn_type, COUNT(*) AS unique_count, SUM(txn_amount) AS total_amount
 FROM customer_transactions
 GROUP BY txn_type;
+
+-- What is the average total historical deposit counts and amounts for all customers?
+SELECT AVG(deposit_count) AS avg_deposit_count, AVG(deposit_amount) AS avg_deposit_amount
+FROM (
+    SELECT customer_id, COUNT(*) AS deposit_count, SUM(txn_amount) AS deposit_amount
+    FROM customer_transactions
+    WHERE txn_type = 'deposit'
+    GROUP BY customer_id
+) AS deposits;
+
+

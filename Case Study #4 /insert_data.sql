@@ -56,6 +56,7 @@ INSERT INTO customer_transactions (customer_id, txn_date, txn_type, txn_amount) 
 
 -- How many unique nodes are there on the Data Bank system?
 
+
 SELECT COUNT(DISTINCT node_id) AS unique_nodes FROM customer_nodes;
 
 -- What is the number of nodes per region?
@@ -64,4 +65,12 @@ SELECT region_name, COUNT(DISTINCT node_id) AS node_count
 FROM customer_nodes
 JOIN regions ON customer_nodes.region_id = regions.region_id
 GROUP BY region_name;
+
+-- How many customers are allocated to each region?
+
+SELECT region_name, COUNT(DISTINCT customer_id) AS customer_count
+FROM customer_nodes
+JOIN regions ON customer_nodes.region_id = regions.region_id
+GROUP BY region_name;
+
 

@@ -77,4 +77,12 @@ GROUP BY region_name;
 SELECT AVG(end_date - start_date) AS average_days
 FROM customer_nodes;
 
-
+-- What is the median, 80th and 95th percentile for this same reallocation days metric for each region?
+SELECT 
+    region_name,
+    PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY end_date - start_date) AS median_days,
+    PERCENTILE_CONT(0.80) WITHIN GROUP (ORDER BY end_date - start_date) AS percentile_80_days,
+    PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY end_date - start_date) AS percentile_95_days
+FROM customer_nodes
+JOIN regions ON customer_nodes.region_id = regions.region_id
+GROUP BY region_name;

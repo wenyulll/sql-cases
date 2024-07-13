@@ -73,4 +73,8 @@ FROM customer_nodes
 JOIN regions ON customer_nodes.region_id = regions.region_id
 GROUP BY region_name;
 
+-- How many days on average are customers reallocated to a different node?
+SELECT AVG(end_date - start_date) AS average_days
+FROM customer_nodes;
+
 

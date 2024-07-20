@@ -148,5 +148,20 @@ GROUP BY txn_month;
 -- ### C. Data Allocation Challenge
 -- To test various hypotheses, Data Bank wants to allocate data using three different options:
 -- 1. **Option 1**: Data allocation based on the amount of money at the end of the previous month.
+WITH monthly_end_balance AS (
+    SELECT
+        customer_id,
+        DATE_TRUNC('month', txn_date) AS txn_month,
+        SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -txn_amount END) AS monthly_balance
+    FROM customer_transactions
+    GROUP BY customer_id, txn_month
+)
+SELECT
+    customer_id,
+    txn_month,
+    monthly_balance AS end_month_balance
+FROM monthly_end_balance;
+
 -- 2. **Option 2**: Data allocation based on the average amount of money kept in the account in the previous 30 days.
 -- 3. **Option 3**: Data updated in real-time.
+

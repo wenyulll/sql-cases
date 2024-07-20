@@ -103,4 +103,20 @@ FROM (
     GROUP BY customer_id
 ) AS deposits;
 
+-- 3. **Monthly Activity**: For each month, count how many Data Bank customers make more than one deposit and either one purchase or one withdrawal in a single month.
 
+SELECT
+    DATE_TRUNC('month', txn_date) AS txn_month,
+    COUNT(DISTINCT customer_id) AS active_customers
+FROM (
+    SELECT
+        customer_id,
+        txn_date,
+        COUNT(*) FILTER (WHERE txn_type = 'deposit') AS deposit_count,
+        COUNT(*) FILTER (WHERE txn_type = 'purchase') AS purchase_count,
+        COUNT(*) FILTER (WHERE txn_type = 'withdrawal') AS withdrawal_count
+    FROM customer_transactions
+    GROUP BY customer_id, txn_date
+) AS monthly_activity
+WHERE deposit_count > 1 AND (purchase_count > 0 OR withdrawal_count > 0)
+GROUP BY txn_month;

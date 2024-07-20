@@ -121,3 +121,8 @@ FROM (
 WHERE deposit_count > 1 AND (purchase_count > 0 OR withdrawal_count > 0)
 GROUP BY txn_month;
 
+-- 4. **Closing Balance**: Calculate the closing balance for each customer at the end of the month.
+SELECT customer_id,
+       SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -txn_amount END) AS closing_balance
+FROM customer_transactions
+GROUP BY customer_id;

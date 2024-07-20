@@ -126,3 +126,21 @@ SELECT customer_id,
        SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -txn_amount END) AS closing_balance
 FROM customer_transactions
 GROUP BY customer_id;
+
+-- 5. **Balance Increase Percentage**: Find the percentage of customers who increase their closing balance by more than 5%.
+
+SELECT
+    DATE_TRUNC('month', txn_date) AS txn_month,
+    COUNT(DISTINCT customer_id) AS active_customers
+FROM (
+    SELECT
+        customer_id,
+        txn_date,
+        COUNT(*) FILTER (WHERE txn_type = 'deposit') AS deposit_count,
+        COUNT(*) FILTER (WHERE txn_type = 'purchase') AS purchase_count,
+        COUNT(*) FILTER (WHERE txn_type = 'withdrawal') AS withdrawal_count
+    FROM customer_transactions
+    GROUP BY customer_id, txn_date
+) AS monthly_activity
+WHERE deposit_count > 1 AND (purchase_count > 0 OR withdrawal_count > 0)
+GROUP BY txn_month;

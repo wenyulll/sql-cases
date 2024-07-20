@@ -120,3 +120,4 @@ FROM (
 ) AS monthly_activity
 WHERE deposit_count > 1 AND (purchase_count > 0 OR withdrawal_count > 0)
 GROUP BY txn_month;
+

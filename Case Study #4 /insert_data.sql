@@ -163,5 +163,18 @@ SELECT
 FROM monthly_end_balance;
 
 -- 2. **Option 2**: Data allocation based on the average amount of money kept in the account in the previous 30 days.
+WITH daily_balance AS (
+    SELECT
+        customer_id,
+        txn_date,
+        SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -txn_amount END) OVER (PARTITION BY customer_id ORDER BY txn_date) AS running_balance
+    FROM customer_transactions
+)
+SELECT
+    customer_id,
+    txn_date,
+    AVG(running_balance) OVER (PARTITION BY customer_id ORDER BY txn_date ROWS BETWEEN 29 PRECEDING AND CURRENT ROW) AS average_30_day_balance
+FROM daily_balance;
+
 -- 3. **Option 3**: Data updated in real-time.
 

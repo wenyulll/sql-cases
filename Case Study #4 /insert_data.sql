@@ -185,3 +185,31 @@ SELECT
 FROM customer_transactions;
 -- Running Customer Balance, Customer Balance at End of Month, and Minimum, Average, Maximum Values of Running Balance for Each Customer:
 
+WITH running_balance AS (
+    SELECT
+        customer_id,
+        txn_date,
+        SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -txn_amount END) OVER (PARTITION BY customer_id ORDER BY txn_date) AS balance
+    FROM customer_transactions
+),
+monthly_balance AS (
+    SELECT
+        customer_id,
+        DATE_TRUNC('month', txn_date) AS month,
+        MAX(balance) AS end_month_balance
+    FROM running_balance
+    GROUP BY customer_id, month
+)
+SELECT
+    customer_id,
+    MIN(balance) AS min_balance,
+    AVG(balance) AS avg_balance,
+    MAX(balance) AS max_balance
+FROM running_balance
+GROUP BY customer_id;
+
+SELECT
+    customer_id,
+    month,
+    end_month_balance
+FROM monthly_balance;

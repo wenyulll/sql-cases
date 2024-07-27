@@ -231,3 +231,20 @@ SELECT
     SUM(daily_interest) AS monthly_interest
 FROM daily_interest
 GROUP BY customer_id, month;
+
+-- Data Growth Using an Interest Calculation with Daily Compounding:
+WITH compounded_balance AS (
+    SELECT
+        customer_id,
+        txn_date,
+        SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -txn_amount END) OVER (PARTITION BY customer_id ORDER BY txn_date) AS balance,
+        POWER(1 + (0.06 / 365), ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY txn_date)) - 1 AS compounded_factor
+    FROM customer_transactions
+)
+SELECT
+    customer_id,
+    DATE_TRUNC('month', txn_date) AS month,
+    SUM(balance * compounded_factor) AS compounded_balance
+FROM compounded_balance
+GROUP BY customer_id, month;
+

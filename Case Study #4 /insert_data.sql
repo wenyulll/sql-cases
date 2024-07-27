@@ -178,3 +178,8 @@ FROM daily_balance;
 
 -- 3. **Option 3**: Data updated in real-time.
 
+SELECT
+    customer_id,
+    txn_date,
+    SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -txn_amount END) OVER (PARTITION BY customer_id ORDER BY txn_date) AS real_time_balance
+FROM customer_transactions;

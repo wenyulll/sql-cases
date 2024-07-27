@@ -213,3 +213,21 @@ SELECT
     month,
     end_month_balance
 FROM monthly_balance;
+
+-- D. Extra Challenge
+-- Data Growth Using an Interest Calculation without Compounding:
+
+WITH daily_interest AS (
+    SELECT
+        customer_id,
+        txn_date,
+        SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -txn_amount END) OVER (PARTITION BY customer_id ORDER BY txn_date) AS daily_balance,
+        SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -txn_amount END) OVER (PARTITION BY customer_id ORDER BY txn_date) * (0.06 / 365) AS daily_interest
+    FROM customer_transactions
+)
+SELECT
+    customer_id,
+    DATE_TRUNC('month', txn_date) AS month,
+    SUM(daily_interest) AS monthly_interest
+FROM daily_interest
+GROUP BY customer_id, month;

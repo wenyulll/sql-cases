@@ -183,3 +183,5 @@ SELECT
     txn_date,
     SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -txn_amount END) OVER (PARTITION BY customer_id ORDER BY txn_date) AS real_time_balance
 FROM customer_transactions;
+-- Running Customer Balance, Customer Balance at End of Month, and Minimum, Average, Maximum Values of Running Balance for Each Customer:
+

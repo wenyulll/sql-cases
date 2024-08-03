@@ -34,3 +34,7 @@ CREATE TABLE clique_bait.events (
   "sequence_number" INTEGER,
   "event_time" TIMESTAMP
 );
+
+
+SELECT COUNT(DISTINCT user_id) AS total_users
+FROM clique_bait.users;

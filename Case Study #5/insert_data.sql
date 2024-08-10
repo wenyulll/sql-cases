@@ -62,3 +62,8 @@ FROM clique_bait.events e
 JOIN clique_bait.event_identifier ei
 ON e.event_type = ei.event_type
 GROUP BY ei.event_name;
+
+-- Percentage of visits with a purchase event
+SELECT 
+    (COUNT(DISTINCT CASE WHEN e.event_type = 3 THEN visit_id END) * 100.0 / COUNT(DISTINCT visit_id)) AS purchase_percentage
+FROM clique_bait.events e;

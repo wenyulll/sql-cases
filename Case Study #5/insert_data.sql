@@ -54,3 +54,11 @@ SELECT DATE_TRUNC('month', event_time) AS month, COUNT(DISTINCT visit_id) AS uni
 FROM clique_bait.events
 GROUP BY month
 ORDER BY month;
+
+
+-- Events count by event type
+SELECT ei.event_name, COUNT(e.event_type) AS event_count
+FROM clique_bait.events e
+JOIN clique_bait.event_identifier ei
+ON e.event_type = ei.event_type
+GROUP BY ei.event_name;

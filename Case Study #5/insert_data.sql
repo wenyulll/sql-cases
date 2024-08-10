@@ -47,3 +47,10 @@ FROM (
     FROM clique_bait.users
     GROUP BY user_id
 ) AS cookie_counts;
+
+
+-- Unique visits per month
+SELECT DATE_TRUNC('month', event_time) AS month, COUNT(DISTINCT visit_id) AS unique_visits
+FROM clique_bait.events
+GROUP BY month
+ORDER BY month;

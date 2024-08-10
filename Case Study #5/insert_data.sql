@@ -36,5 +36,6 @@ CREATE TABLE clique_bait.events (
 );
 
 
+-- Number of users
 SELECT COUNT(DISTINCT user_id) AS total_users
 FROM clique_bait.users;

@@ -93,3 +93,15 @@ FROM clique_bait.events e
 JOIN clique_bait.page_hierarchy ph
 ON e.page_id = ph.page_id
 GROUP BY ph.product_category;
+
+
+
+-- Top 3 products by purchases
+SELECT ph.page_name, COUNT(e.event_type) AS purchases
+FROM clique_bait.events e
+JOIN clique_bait.page_hierarchy ph
+ON e.page_id = ph.page_id
+WHERE e.event_type = 3
+GROUP BY ph.page_name
+ORDER BY purchases DESC
+LIMIT 3;

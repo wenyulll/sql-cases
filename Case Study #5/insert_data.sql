@@ -105,3 +105,15 @@ WHERE e.event_type = 3
 GROUP BY ph.page_name
 ORDER BY purchases DESC
 LIMIT 3;
+
+-- Funnel data for each product
+SELECT 
+    ph.page_name AS product_name,
+    COUNT(CASE WHEN e.event_type = 1 THEN 1 END) AS views, 
+    COUNT(CASE WHEN e.event_type = 2 THEN 1 END) AS cart_adds, 
+    COUNT(CASE WHEN e.event_type = 2 AND e.visit_id NOT IN (SELECT visit_id FROM clique_bait.events WHERE event_type = 3) THEN 1 END) AS abandoned_cart,
+    COUNT(CASE WHEN e.event_type = 3 THEN 1 END) AS purchases
+FROM clique_bait.events e
+JOIN clique_bait.page_hierarchy ph
+ON e.page_id = ph.page_id
+GROUP BY ph.page_name;

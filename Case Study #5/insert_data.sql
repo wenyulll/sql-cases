@@ -67,3 +67,9 @@ GROUP BY ei.event_name;
 SELECT 
     (COUNT(DISTINCT CASE WHEN e.event_type = 3 THEN visit_id END) * 100.0 / COUNT(DISTINCT visit_id)) AS purchase_percentage
 FROM clique_bait.events e;
+
+
+-- Percentage of visits viewing the checkout page but not purchasing
+SELECT 
+    (COUNT(DISTINCT CASE WHEN e.page_id = 12 AND e.visit_id NOT IN (SELECT visit_id FROM clique_bait.events WHERE event_type = 3) THEN e.visit_id END) * 100.0 / COUNT(DISTINCT visit_id)) AS checkout_no_purchase_percentage
+FROM clique_bait.events e;

@@ -73,3 +73,14 @@ FROM clique_bait.events e;
 SELECT 
     (COUNT(DISTINCT CASE WHEN e.page_id = 12 AND e.visit_id NOT IN (SELECT visit_id FROM clique_bait.events WHERE event_type = 3) THEN e.visit_id END) * 100.0 / COUNT(DISTINCT visit_id)) AS checkout_no_purchase_percentage
 FROM clique_bait.events e;
+
+
+-- Top 3 pages by views
+SELECT ph.page_name, COUNT(e.page_id) AS views
+FROM clique_bait.events e
+JOIN clique_bait.page_hierarchy ph
+ON e.page_id = ph.page_id
+WHERE e.event_type = 1
+GROUP BY ph.page_name
+ORDER BY views DESC
+LIMIT 3;

@@ -84,3 +84,12 @@ WHERE e.event_type = 1
 GROUP BY ph.page_name
 ORDER BY views DESC
 LIMIT 3;
+
+-- Views and cart adds per product category
+SELECT ph.product_category, 
+    COUNT(CASE WHEN e.event_type = 1 THEN 1 END) AS views, 
+    COUNT(CASE WHEN e.event_type = 2 THEN 1 END) AS cart_adds
+FROM clique_bait.events e
+JOIN clique_bait.page_hierarchy ph
+ON e.page_id = ph.page_id
+GROUP BY ph.product_category;

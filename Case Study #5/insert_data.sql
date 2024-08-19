@@ -138,3 +138,7 @@ SELECT
     COUNT(CASE WHEN e.event_type = 1 THEN 1 END) AS page_views,
     COUNT(CASE WHEN e.event_type = 2 THEN 1 END) AS cart_adds,
     MAX(CASE WHEN e.event_type = 3 THEN 1 ELSE 0 END) AS purchase,
+   ci.campaign_name,
+    COUNT(CASE WHEN e.event_type = 4 THEN 1 END) AS impressions,
+    COUNT(CASE WHEN e.event_type = 5 THEN 1 END) AS clicks,
+    STRING_AGG(CASE WHEN e.event_type = 2 THEN ph.page_name END, ', ' ORDER BY e.sequence_number) AS cart_products

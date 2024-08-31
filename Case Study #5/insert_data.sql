@@ -219,3 +219,4 @@ GROUP BY
 ORDER BY 
     ci.campaign_name, 
     purchases DESC;
+

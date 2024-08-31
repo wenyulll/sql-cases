@@ -143,7 +143,8 @@ SELECT
     ci.campaign_name,
     COUNT(CASE WHEN e.event_type = 4 THEN 1 END) AS impressions,
     COUNT(CASE WHEN e.event_type = 5 THEN 1 END) AS clicks,
-
+    STRING_AGG(CASE WHEN e.event_type = 2 THEN ph.page_name END, ', ' ORDER BY e.sequence_number) AS cart_products
+FROM clique_bait.events e
 JOIN clique_bait.users u
 ON e.cookie_id = u.cookie_id
 LEFT JOIN clique_bait.campaign_identifier ci

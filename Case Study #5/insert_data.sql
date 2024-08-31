@@ -198,3 +198,24 @@ GROUP BY
 ORDER BY 
     ci.campaign_name, 
     purchases DESC;
+
+    -- Detailed product funnel data for each campaign by product category
+SELECT 
+    ci.campaign_name,
+    ph.product_category,
+    COUNT(CASE WHEN e.event_type = 1 THEN 1 END) AS views, 
+    COUNT(CASE WHEN e.event_type = 2 THEN 1 END) AS cart_adds, 
+    COUNT(CASE WHEN e.event_type = 2 AND e.visit_id NOT IN (SELECT visit_id FROM clique_bait.events WHERE event_type = 3) THEN 1 END) AS abandoned_cart,
+    COUNT(CASE WHEN e.event_type = 3 THEN 1 END) AS purchases
+FROM 
+    clique_bait.events e
+JOIN clique_bait.page_hierarchy ph
+ON e.page_id = ph.page_id
+LEFT JOIN clique_bait.campaign_identifier ci
+ON e.event_time BETWEEN ci.start_date AND ci.end_date
+GROUP BY 
+    ci.campaign_name, 
+    ph.product_category
+ORDER BY 
+    ci.campaign_name, 
+    purchases DESC;

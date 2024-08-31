@@ -159,3 +159,21 @@ GROUP BY
     u.user_id, 
     e.visit_id, 
     ci.campaign_name;
+
+-- Aggregated Campaign Analysis - Campaign Impact Overview
+
+SELECT 
+    ci.campaign_name,
+    COUNT(DISTINCT e.visit_id) AS total_visits,
+    SUM(CASE WHEN e.event_type = 3 THEN 1 ELSE 0 END) AS total_purchases,
+    COUNT(DISTINCT e.cookie_id) AS unique_users,
+    SUM(CASE WHEN e.event_type = 4 THEN 1 ELSE 0 END) AS total_impressions,
+    SUM(CASE WHEN e.event_type = 5 THEN 1 ELSE 0 END) AS total_clicks
+FROM 
+    clique_bait.events e
+LEFT JOIN clique_bait.campaign_identifier ci
+ON e.event_time BETWEEN ci.start_date AND ci.end_date
+GROUP BY 
+    ci.campaign_name
+ORDER BY 
+    total_purchases DESC;

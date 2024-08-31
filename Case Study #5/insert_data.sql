@@ -150,3 +150,12 @@ ON e.cookie_id = u.cookie_id
 LEFT JOIN clique_bait.campaign_identifier ci
 ON e.event_time BETWEEN ci.start_date AND ci.end_date
 JOIN
+
+-- Join the necessary tables to complete the campaign analysis table
+
+LEFT JOIN clique_bait.page_hierarchy ph
+ON e.page_id = ph.page_id
+GROUP BY 
+    u.user_id, 
+    e.visit_id, 
+    ci.campaign_name;

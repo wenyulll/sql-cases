@@ -79,7 +79,8 @@ This case study is divided into several sections, each addressing different aspe
 ### E. Bonus Challenges
 - Data design impact for new pizza types
 - SQL INSERT demonstrations for new items
-edit edit
+edit edit edit
+
 
 
 

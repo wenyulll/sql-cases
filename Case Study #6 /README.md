@@ -20,3 +20,14 @@ This table contains information about customers visiting the Clique Bait website
 | 89      | 764796    | 2020-01-07 00:00:00 |
 | 127     | 17ccc5    | 2020-01-22 00:00:00 |
 
+### 2. `events`
+
+This table logs customer visits at a `cookie_id` level. It captures events like page views, add to cart actions, and purchases.
+
+| visit_id | cookie_id | page_id | event_type | sequence_number | event_time              |
+|----------|-----------|---------|------------|-----------------|-------------------------|
+| 719fd3   | 3d83d3    | 5       | 1          | 4               | 2020-03-02 00:29:09.975 |
+| fb1eb1   | c5ff25    | 5       | 2          | 8               | 2020-01-22 07:59:16.762 |
+| 23fe81   | 1e8c2d    | 10      | 1          | 9               | 2020-03-21 13:14:11.746 |
+| ad91aa   | 648115    | 6       | 1          | 3               | 2020-04-27 16:28:09.825 |
+| 5576d7   | ac418c    | 6       | 1          | 4               | 2020-01-18 04:55:10.149 |

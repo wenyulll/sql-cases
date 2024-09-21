@@ -31,3 +31,14 @@ This table logs customer visits at a `cookie_id` level. It captures events like 
 | 23fe81   | 1e8c2d    | 10      | 1          | 9               | 2020-03-21 13:14:11.746 |
 | ad91aa   | 648115    | 6       | 1          | 3               | 2020-04-27 16:28:09.825 |
 | 5576d7   | ac418c    | 6       | 1          | 4               | 2020-01-18 04:55:10.149 |
+### 3. `event_identifier`
+
+This table provides descriptions for each event type captured in the `events` table.
+
+| event_type | event_name   |
+|------------|--------------|
+| 1          | Page View    |
+| 2          | Add to Cart  |
+| 3          | Purchase     |
+| 4          | Ad Impression|
+| 5          | Ad Click     |

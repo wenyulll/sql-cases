@@ -52,3 +52,23 @@ This table contains information about the campaigns run on the Clique Bait websi
 | 1           | 1-3      | BOGOF - Fishing For Compliments | 2020-01-01 00:00:00   | 2020-01-14 00:00:00   |
 | 2           | 4-5      | 25% Off - Living The Lux Life   | 2020-01-15 00:00:00   | 2020-01-28 00:00:00   |
 | 3           | 6-8      | Half Off - Treat Your Shellf(ish)| 2020-02-01 00:00:00  | 2020-03-31 00:00:00   |
+
+### 5. `page_hierarchy`
+
+This table lists all pages on the Clique Bait website tagged with data from user interactions.
+
+| page_id | page_name     | product_category | product_id |
+|---------|---------------|------------------|------------|
+| 1       | Home Page     | null             | null       |
+| 2       | All Products  | null             | null       |
+| 3       | Salmon        | Fish             | 1          |
+| 4       | Kingfish      | Fish             | 2          |
+| 5       | Tuna          | Fish             | 3          |
+| 6       | Russian Caviar| Luxury           | 4          |
+| 7       | Black Truffle | Luxury           | 5          |
+| 8       | Abalone       | Shellfish        | 6          |
+| 9       | Lobster       | Shellfish        | 7          |
+| 10      | Crab          | Shellfish        | 8          |
+| 11      | Oyster        | Shellfish        | 9          |
+| 12      | Checkout      | null             | null       |
+| 13      | Confirmation  | null             | null       |

@@ -42,3 +42,13 @@ This table provides descriptions for each event type captured in the `events` ta
 | 3          | Purchase     |
 | 4          | Ad Impression|
 | 5          | Ad Click     |
+
+### 4. `campaign_identifier`
+
+This table contains information about the campaigns run on the Clique Bait website in 2020.
+
+| campaign_id | products | campaign_name                   | start_date            | end_date              |
+|-------------|----------|---------------------------------|-----------------------|-----------------------|
+| 1           | 1-3      | BOGOF - Fishing For Compliments | 2020-01-01 00:00:00   | 2020-01-14 00:00:00   |
+| 2           | 4-5      | 25% Off - Living The Lux Life   | 2020-01-15 00:00:00   | 2020-01-28 00:00:00   |
+| 3           | 6-8      | Half Off - Treat Your Shellf(ish)| 2020-02-01 00:00:00  | 2020-03-31 00:00:00   |

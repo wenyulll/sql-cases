@@ -114,3 +114,47 @@ CREATE TABLE clique_bait.events (
   "sequence_number" INTEGER,
   "event_time" TIMESTAMP
 );
+
+2. Digital Analysis
+Using the available datasets, answer the following questions with a single query for each:
+
+How many users are there?
+How many cookies does each user have on average?
+What is the unique number of visits by all users per month?
+What is the number of events for each event type?
+What is the percentage of visits which have a purchase event?
+What is the percentage of visits which view the checkout page but do not have a purchase event?
+What are the top 3 pages by number of views?
+What is the number of views and cart adds for each product category?
+What are the top 3 products by purchases?
+3. Product Funnel Analysis
+Using a single SQL query, create a new output table with the following details:
+
+How many times was each product viewed?
+How many times was each product added to cart?
+How many times was each product added to a cart but not purchased (abandoned)?
+How many times was each product purchased?
+Additionally, create another table with similar details aggregated for each product category.
+
+Use the two new output tables to answer the following questions:
+
+Which product had the most views, cart adds, and purchases?
+Which product was most likely to be abandoned?
+Which product had the highest view-to-purchase percentage?
+What is the average conversion rate from view to cart add?
+What is the average conversion rate from cart add to purchase?
+4. Campaigns Analysis
+Generate a table for each unique visit_id with the following columns:
+
+user_id
+visit_id
+visit_start_time: the earliest event_time for each visit
+page_views: count of page views for each visit
+cart_adds: count of product cart add events for each visit
+purchase: 1/0 flag if a purchase event exists for each visit
+campaign_name: map the visit to a campaign if the visit_start_time falls between the start_date and end_date
+impression: count of ad impressions for each visit
+click: count of ad clicks for each visit
+(Optional): cart_products: a comma-separated list of products added to the cart sorted by the order they were added to the cart.
+Use the generated table to derive at least 5 insights for the Clique Bait team. Emphasize the most important points in an infographic.
+

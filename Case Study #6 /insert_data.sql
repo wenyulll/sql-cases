@@ -23,3 +23,12 @@ CREATE TABLE clique_bait.users (
   cookie_id VARCHAR(50),
   start_date TIMESTAMP
 );
+
+CREATE TABLE clique_bait.events (
+  visit_id VARCHAR(50),
+  cookie_id VARCHAR(50),
+  page_id INTEGER,
+  event_type INTEGER,
+  sequence_number INTEGER,
+  event_time TIMESTAMP
+);

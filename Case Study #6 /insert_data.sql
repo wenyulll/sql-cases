@@ -1,5 +1,4 @@
-1.1 How many users are there?
-
-SELECT COUNT(DISTINCT user_id) AS total_users
-FROM clique_bait.users;
-
+CREATE TABLE clique_bait.event_identifier (
+  event_type INTEGER,
+  event_name VARCHAR(50)
+);

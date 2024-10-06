@@ -17,3 +17,9 @@ CREATE TABLE clique_bait.page_hierarchy (
   product_category VARCHAR(50),
   product_id INTEGER
 );
+
+CREATE TABLE clique_bait.users (
+  user_id INTEGER,
+  cookie_id VARCHAR(50),
+  start_date TIMESTAMP
+);

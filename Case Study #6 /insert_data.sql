@@ -10,3 +10,10 @@ CREATE TABLE clique_bait.campaign_identifier (
   start_date TIMESTAMP,
   end_date TIMESTAMP
 );
+
+CREATE TABLE clique_bait.page_hierarchy (
+  page_id INTEGER,
+  page_name VARCHAR(50),
+  product_category VARCHAR(50),
+  product_id INTEGER
+);

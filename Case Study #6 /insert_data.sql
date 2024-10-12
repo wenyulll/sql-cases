@@ -42,3 +42,8 @@ FROM (
     FROM clique_bait.users
     GROUP BY user_id
 ) user_cookies;
+
+SELECT DATE_TRUNC('month', event_time) AS month, COUNT(DISTINCT visit_id) AS unique_visits
+FROM clique_bait.events
+GROUP BY month
+ORDER BY month;

@@ -110,3 +110,18 @@ FROM clique_bait.events e
 JOIN clique_bait.event_identifier ei ON e.event_type = ei.event_type
 GROUP BY ei.event_name
 ORDER BY event_count DESC;
+
+
+WITH total_visits AS (
+    SELECT COUNT(DISTINCT visit_id) AS total_visits
+    FROM clique_bait.events
+),
+purchase_visits AS (
+    SELECT COUNT(DISTINCT visit_id) AS purchase_visits
+    FROM clique_bait.events
+    WHERE event_type = 3  -- 3代表购买事件
+)
+SELECT (purchase_visits::FLOAT / total_visits) * 100 AS purchase_percentage
+FROM total_visits, purchase_visits;
+
+

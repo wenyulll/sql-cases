@@ -35,3 +35,10 @@ CREATE TABLE clique_bait.events (
 
 SELECT COUNT(DISTINCT user_id) AS total_users
 FROM clique_bait.users;
+
+SELECT AVG(cookie_count) AS avg_cookies_per_user
+FROM (
+    SELECT user_id, COUNT(cookie_id) AS cookie_count
+    FROM clique_bait.users
+    GROUP BY user_id
+) user_cookies;

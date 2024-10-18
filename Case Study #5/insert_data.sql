@@ -220,3 +220,15 @@ ORDER BY
     ci.campaign_name, 
     purchases DESC;
 
+
+WITH total_visits AS (
+    SELECT COUNT(DISTINCT visit_id) AS total_visits
+    FROM clique_bait.events
+),
+purchase_visits AS (
+    SELECT COUNT(DISTINCT visit_id) AS purchase_visits
+    FROM clique_bait.events
+    WHERE event_type = 3
+)
+SELECT (purchase_visits::FLOAT / total_visits) * 100 AS purchase_percentage
+FROM total_visits, purchase_visits;

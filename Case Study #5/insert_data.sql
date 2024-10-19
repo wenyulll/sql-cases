@@ -230,5 +230,15 @@ purchase_visits AS (
     FROM clique_bait.events
     WHERE event_type = 3
 )
+
+
+
 SELECT (purchase_visits::FLOAT / total_visits) * 100 AS purchase_percentage
 FROM total_visits, purchase_visits;
+SELECT ph.page_name, COUNT(e.page_id) AS view_count
+FROM clique_bait.events e
+JOIN clique_bait.page_hierarchy ph ON e.page_id = ph.page_id
+WHERE e.event_type = 1
+GROUP BY ph.page_name
+ORDER BY view_count DESC
+LIMIT 3;

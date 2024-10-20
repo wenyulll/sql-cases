@@ -242,3 +242,6 @@ LIMIT 3;
 
 SELECT ph.product_category, 
        COUNT(CASE WHEN e.event_type = 1
+
+SELECT COUNT(DISTINCT user_id) AS total_users
+FROM clique_bait.users;

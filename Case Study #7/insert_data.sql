@@ -10,3 +10,13 @@ CREATE TABLE balanced_tree.product_details (
     style_name VARCHAR(50)
 );
 
+-- Create `sales` table
+CREATE TABLE balanced_tree.sales (
+    prod_id VARCHAR(10),
+    qty INT,
+    price DECIMAL(10, 2),
+    discount DECIMAL(5, 2),
+    member CHAR(1),
+    txn_id VARCHAR(10),
+    start_txn_time TIMESTAMP
+);

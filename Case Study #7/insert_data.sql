@@ -20,3 +20,11 @@ CREATE TABLE balanced_tree.sales (
     txn_id VARCHAR(10),
     start_txn_time TIMESTAMP
 );
+
+-- Create `product_hierarchy` table
+CREATE TABLE balanced_tree.product_hierarchy (
+    id INT PRIMARY KEY,
+    parent_id INT,
+    level_text VARCHAR(50),
+    level_name VARCHAR(50)
+);

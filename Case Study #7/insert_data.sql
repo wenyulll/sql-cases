@@ -28,3 +28,10 @@ CREATE TABLE balanced_tree.product_hierarchy (
     level_text VARCHAR(50),
     level_name VARCHAR(50)
 );
+
+-- Create `product_prices` table
+CREATE TABLE balanced_tree.product_prices (
+    id INT PRIMARY KEY,
+    product_id VARCHAR(10),
+    price DECIMAL(10, 2)
+);

@@ -26,4 +26,15 @@ SELECT
   ROUND(100 * (curr_year_spend - prev_year_spend ) / prev_year_spend, 2) AS yoy_rate
 FROM 
     product_by_year
+
+
+SELECT 
+  year,
+  product_id,
+  curr_year_spend,
+  prev_year_spend,
+  ROUND(100 * (curr_year_spend - prev_year_spend ) / prev_year_spend, 2) AS yoy_rate
+FROM 
+    product_by_year
+;
 ;

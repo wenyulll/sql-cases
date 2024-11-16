@@ -88,3 +88,20 @@ In this case study, we are tasked with analyzing aggregated metrics for a major 
 5. Analyze potential causes for fluctuations in maximum average composition.
 
 ---
+
+## Required Outputs
+### Example Output for Rolling Average Calculation
+| month_year | interest_name                 | max_index_composition | 3_month_moving_avg | 1_month_ago                 | 2_months_ago                 |
+|------------|-------------------------------|------------------------|--------------------|-----------------------------|-----------------------------|
+| 2018-09-01 | Work Comes First Travelers    | 8.26                   | 7.61               | Las Vegas Trip Planners: 7.21 | Las Vegas Trip Planners: 7.36 |
+| 2018-10-01 | Work Comes First Travelers    | 9.14                   | 8.20               | Work Comes First Travelers: 8.26 | Las Vegas Trip Planners: 7.21 |
+| 2018-11-01 | Work Comes First Travelers    | 8.28                   | 8.56               | Work Comes First Travelers: 9.14 | Work Comes First Travelers: 8.26 |
+| 2018-12-01 | Work Comes First Travelers    | 8.31                   | 8.58               | Work Comes First Travelers: 8.28 | Work Comes First Travelers: 9.14 |
+| 2019-01-01 | Work Comes First Travelers    | 7.66                   | 8.08               | Work Comes First Travelers: 8.31 | Work Comes First Travelers: 8.28 |
+
+---
+
+## Conclusion
+This case study highlights the importance of customer segmentation and interest analysis in digital marketing. By understanding how these metrics interact, businesses can create more targeted campaigns and improve ROI.
+
+For further insights or SQL training, consider joining Danny Ma's **Serious SQL Course**. Visit the official website for more details!

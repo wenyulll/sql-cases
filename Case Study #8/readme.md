@@ -34,3 +34,24 @@ In this case study, we are tasked with analyzing aggregated metrics for a major 
    - Perform rolling average calculations for key metrics.
 
 ---
+## Data Description
+### Interest Metrics Table
+| Column            | Description                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| `_month`          | Month of the record.                                                       |
+| `_year`           | Year of the record.                                                        |
+| `month_year`      | Combination of month and year.                                             |
+| `interest_id`     | Unique identifier for an interest segment.                                 |
+| `composition`     | Percentage of the client’s customer list interacting with the interest.     |
+| `index_value`     | Multiple of the average composition across all clients for this interest. |
+| `ranking`         | Ranking of the interest by index_value.                                    |
+| `percentile_ranking` | Percentile ranking of the index_value.                                 |
+
+### Interest Map Table
+| Column            | Description                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| `id`              | Unique identifier for an interest.                                         |
+| `interest_name`   | Descriptive name of the interest.                                          |
+| `interest_summary` | Summary of the interest segment.                                         |
+| `created_at`      | Timestamp when the interest was created.                                   |
+| `last_modified`   | Timestamp of the last modification to the interest record.                |

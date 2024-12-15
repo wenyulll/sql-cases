@@ -19,3 +19,12 @@ VALUES
 (7, 2018, '07-2018', 18923, 10.85, 5.29, 3, 99.59),
 (7, 2018, '07-2018', 6344, 10.32, 5.10, 4, 99.45),
 (7, 2018, '07-2018', 100, 10.77, 5.04, 5, 99.31);
+
+-- Create the interest_map table
+CREATE TABLE fresh_segments.interest_map (
+    id INT,
+    interest_name VARCHAR(255),
+    interest_summary TEXT,
+    created_at TIMESTAMP,
+    last_modified TIMESTAMP
+);

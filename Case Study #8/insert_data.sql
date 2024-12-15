@@ -28,3 +28,14 @@ CREATE TABLE fresh_segments.interest_map (
     created_at TIMESTAMP,
     last_modified TIMESTAMP
 );
+
+-- Insert sample data into interest_map
+INSERT INTO fresh_segments.interest_map
+(id, interest_name, interest_summary, created_at, last_modified)
+VALUES
+(1, 'Fitness Enthusiasts', 'Consumers using fitness tracking apps and websites.', '2016-05-26 14:57:59', '2018-05-23 11:30:12'),
+(2, 'Gamers', 'Consumers researching game reviews and cheat codes.', '2016-05-26 14:57:59', '2018-05-23 11:30:12'),
+(3, 'Car Enthusiasts', 'Readers of automotive news and car reviews.', '2016-05-26 14:57:59', '2018-05-23 11:30:12'),
+(4, 'Luxury Retail Researchers', 'Consumers researching luxury product reviews and gift ideas.', '2016-05-26 14:57:59', '2018-05-23 11:30:12'),
+(5, 'Brides & Wedding Planners', 'People researching wedding ideas and vendors.', '2016-05-26 14:57:59', '2018-05-23 11:30:12');
+

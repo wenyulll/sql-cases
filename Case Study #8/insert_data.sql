@@ -39,3 +39,6 @@ VALUES
 (4, 'Luxury Retail Researchers', 'Consumers researching luxury product reviews and gift ideas.', '2016-05-26 14:57:59', '2018-05-23 11:30:12'),
 (5, 'Brides & Wedding Planners', 'People researching wedding ideas and vendors.', '2016-05-26 14:57:59', '2018-05-23 11:30:12');
 
+-- Question 1: Modify month_year column to a date type with the start of the month
+ALTER TABLE fresh_segments.interest_metrics
+ALTER COLUMN month_year TYPE DATE USING TO_DATE(month_year, 'MM-YYYY');

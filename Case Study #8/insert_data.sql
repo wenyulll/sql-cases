@@ -31,3 +31,16 @@ VALUES
 (7, 2018, '07-2018', 6111, 10.71, 4.83, 8, 98.90),
 (7, 2018, '07-2018', 6214, 9.71, 4.83, 8, 98.90),
 (7, 2018, '07-2018', 19422, 10.11, 4.81, 10, 98.63);
+
+INSERT INTO fresh_segments.interest_map (id, interest_name, interest_summary, created_at, last_modified)
+VALUES
+(1, 'Fitness Enthusiasts', 'Consumers using fitness tracking apps and websites.', '2016-05-26 14:57:59', '2018-05-23 11:30:12'),
+(2, 'Gamers', 'Consumers researching game reviews and cheat codes.', '2016-05-26 14:57:59', '2018-05-23 11:30:12'),
+(3, 'Car Enthusiasts', 'Readers of automotive news and car reviews.', '2016-05-26 14:57:59', '2018-05-23 11:30:12'),
+(4, 'Luxury Retail Researchers', 'Consumers researching luxury product reviews and gift ideas.', '2016-05-26 14:57:59', '2018-05-23 11:30:12'),
+(5, 'Brides & Wedding Planners', 'People researching wedding ideas and vendors.', '2016-05-26 14:57:59', '2018-05-23 11:30:12'),
+(6, 'Vacation Planners', 'Consumers reading reviews of vacation destinations and accommodations.', '2016-05-26 14:57:59', '2018-05-23 11:30:13'),
+(7, 'Motorcycle Enthusiasts', 'Readers of motorcycle news and reviews.', '2016-05-26 14:57:59', '2018-05-23 11:30:13'),
+(8, 'Business News Readers', 'Readers of online business news content.', '2016-05-26 14:57:59', '2018-05-23 11:30:12'),
+(12, 'Thrift Store Shoppers', 'Consumers shopping online for clothing at thrift stores and researching locations.', '2016-05-26 14:57:59', '2018-03-16 13:14:00'),
+(13, 'Advertising Professionals', 'People who read advertising industry news.', '2016-05-26 14:57:59', '2018-05-23 11:30:12');

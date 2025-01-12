@@ -44,3 +44,7 @@ VALUES
 (8, 'Business News Readers', 'Readers of online business news content.', '2016-05-26 14:57:59', '2018-05-23 11:30:12'),
 (12, 'Thrift Store Shoppers', 'Consumers shopping online for clothing at thrift stores and researching locations.', '2016-05-26 14:57:59', '2018-03-16 13:14:00'),
 (13, 'Advertising Professionals', 'People who read advertising industry news.', '2016-05-26 14:57:59', '2018-05-23 11:30:12');
+
+-- Update the month_year column to a proper date type
+UPDATE fresh_segments.interest_metrics
+SET month_year = TO_DATE(month_year, 'MM-YYYY');

@@ -58,3 +58,7 @@ GROUP BY
     month_year
 ORDER BY 
     month_year ASC NULLS FIRST;
+
+-- Remove rows with null month_year
+DELETE FROM fresh_segments.interest_metrics
+WHERE month_year IS NULL;

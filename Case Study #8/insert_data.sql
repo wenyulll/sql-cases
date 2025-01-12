@@ -48,3 +48,13 @@ VALUES
 -- Update the month_year column to a proper date type
 UPDATE fresh_segments.interest_metrics
 SET month_year = TO_DATE(month_year, 'MM-YYYY');
+
+SELECT 
+    month_year, 
+    COUNT(*) AS record_count
+FROM 
+    fresh_segments.interest_metrics
+GROUP BY 
+    month_year
+ORDER BY 
+    month_year ASC NULLS FIRST;

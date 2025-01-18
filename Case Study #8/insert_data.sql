@@ -91,3 +91,18 @@ ORDER BY
     record_count DESC;
 
     -- Determine table join type for analsysis:
+-- Perform a left join and check specific interest_id = 21246
+SELECT 
+    im.*,
+    m.interest_name,
+    m.interest_summary,
+    m.created_at,
+    m.last_modified
+FROM 
+    fresh_segments.interest_metrics im
+LEFT JOIN 
+    fresh_segments.interest_map m
+ON 
+    im.interest_id = m.id
+WHERE 
+    im.interest_id = 21246;

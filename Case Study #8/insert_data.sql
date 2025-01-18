@@ -80,3 +80,12 @@ WHERE
     id NOT IN (SELECT interest_id FROM fresh_segments.interest_metrics);
 
     -- Summarize id values in interest_map by total record count:
+    SELECT 
+    id, 
+    COUNT(*) AS record_count
+FROM 
+    fresh_segments.interest_map
+GROUP BY 
+    id
+ORDER BY 
+    record_count DESC;

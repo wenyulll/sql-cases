@@ -78,3 +78,5 @@ FROM
     fresh_segments.interest_map
 WHERE 
     id NOT IN (SELECT interest_id FROM fresh_segments.interest_metrics);
+
+    -- Summarize id values in interest_map by total record count:

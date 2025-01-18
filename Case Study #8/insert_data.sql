@@ -70,3 +70,11 @@ FROM
     fresh_segments.interest_metrics
 WHERE 
     interest_id NOT IN (SELECT id FROM fresh_segments.interest_map);
+
+    -- Count id in interest_map but not in interest_metrics
+SELECT 
+    COUNT(DISTINCT id) AS unmatched_in_interest_metrics
+FROM 
+    fresh_segments.interest_map
+WHERE 
+    id NOT IN (SELECT interest_id FROM fresh_segments.interest_metrics);

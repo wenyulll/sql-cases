@@ -63,3 +63,10 @@ ORDER BY
 DELETE FROM fresh_segments.interest_metrics
 WHERE month_year IS NULL;
 
+-- Count interest_id in interest_metrics but not in interest_map
+SELECT 
+    COUNT(DISTINCT interest_id) AS unmatched_in_interest_map
+FROM 
+    fresh_segments.interest_metrics
+WHERE 
+    interest_id NOT IN (SELECT id FROM fresh_segments.interest_map);

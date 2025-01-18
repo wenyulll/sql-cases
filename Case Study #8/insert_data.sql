@@ -89,3 +89,5 @@ GROUP BY
     id
 ORDER BY 
     record_count DESC;
+
+    -- Determine table join type for analsysis:
